@@ -16,6 +16,7 @@ class MainNavController: UINavigationController {
     
     private func setupNavController() {
         let reposTableVC = ReposTableVC()
+        reposTableVC.title = Localize.App.Title
         self.viewControllers = [reposTableVC]
     }
 }

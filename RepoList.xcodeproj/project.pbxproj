@@ -15,6 +15,12 @@
 		F396462E2655571600CDF777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F396462C2655571600CDF777 /* LaunchScreen.storyboard */; };
 		F396463B26555BC600CDF777 /* ReposTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396463A26555BC600CDF777 /* ReposTableVC.swift */; };
 		F396463E26555C3900CDF777 /* MainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396463D26555C3900CDF777 /* MainNavController.swift */; };
+		F39646462655605000CDF777 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39646452655605000CDF777 /* RepositoryModel.swift */; };
+		F396464B265561B900CDF777 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396464A265561B900CDF777 /* NetworkService.swift */; };
+		F3E43EF52655A69900B04984 /* ReposTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E43EF42655A69900B04984 /* ReposTableCellView.swift */; };
+		F3E43EFB2655BAB200B04984 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3E43EFA2655BAB200B04984 /* Localizable.strings */; };
+		F3E43EFF2655BAF500B04984 /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E43EFE2655BAF500B04984 /* LocalizableConstants.swift */; };
+		F3E43F032655BB7B00B04984 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E43F022655BB7B00B04984 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		F396462F2655571600CDF777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F396463A26555BC600CDF777 /* ReposTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposTableVC.swift; sourceTree = "<group>"; };
 		F396463D26555C3900CDF777 /* MainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavController.swift; sourceTree = "<group>"; };
+		F39646452655605000CDF777 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
+		F396464A265561B900CDF777 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F3E43EF42655A69900B04984 /* ReposTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposTableCellView.swift; sourceTree = "<group>"; };
+		F3E43EFA2655BAB200B04984 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F3E43EFE2655BAF500B04984 /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
+		F3E43F022655BB7B00B04984 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +72,8 @@
 		F39646202655571100CDF777 /* RepoList */ = {
 			isa = PBXGroup;
 			children = (
+				F3E43F012655BB6900B04984 /* Extension */,
+				F3E43EF92655BA9600B04984 /* Localization */,
 				F3964639265559C400CDF777 /* Service */,
 				F3964638265559C000CDF777 /* View */,
 				F3964637265559BB00CDF777 /* Model */,
@@ -87,6 +101,7 @@
 		F3964637265559BB00CDF777 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F39646452655605000CDF777 /* RepositoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -94,6 +109,7 @@
 		F3964638265559C000CDF777 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F3E43EF42655A69900B04984 /* ReposTableCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -101,8 +117,26 @@
 		F3964639265559C400CDF777 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F396464A265561B900CDF777 /* NetworkService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		F3E43EF92655BA9600B04984 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				F3E43EFA2655BAB200B04984 /* Localizable.strings */,
+				F3E43EFE2655BAF500B04984 /* LocalizableConstants.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		F3E43F012655BB6900B04984 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F3E43F022655BB7B00B04984 /* Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F396462E2655571600CDF777 /* LaunchScreen.storyboard in Resources */,
+				F3E43EFB2655BAB200B04984 /* Localizable.strings in Resources */,
 				F396462B2655571600CDF777 /* Assets.xcassets in Resources */,
 				F39646292655571100CDF777 /* Main.storyboard in Resources */,
 			);
@@ -177,9 +212,14 @@
 			files = (
 				F396463E26555C3900CDF777 /* MainNavController.swift in Sources */,
 				F39646262655571100CDF777 /* ViewController.swift in Sources */,
+				F39646462655605000CDF777 /* RepositoryModel.swift in Sources */,
 				F39646222655571100CDF777 /* AppDelegate.swift in Sources */,
 				F39646242655571100CDF777 /* SceneDelegate.swift in Sources */,
+				F3E43F032655BB7B00B04984 /* Extensions.swift in Sources */,
+				F3E43EFF2655BAF500B04984 /* LocalizableConstants.swift in Sources */,
 				F396463B26555BC600CDF777 /* ReposTableVC.swift in Sources */,
+				F396464B265561B900CDF777 /* NetworkService.swift in Sources */,
+				F3E43EF52655A69900B04984 /* ReposTableCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
