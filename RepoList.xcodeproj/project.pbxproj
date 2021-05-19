@@ -21,6 +21,7 @@
 		F3E43EFB2655BAB200B04984 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3E43EFA2655BAB200B04984 /* Localizable.strings */; };
 		F3E43EFF2655BAF500B04984 /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E43EFE2655BAF500B04984 /* LocalizableConstants.swift */; };
 		F3E43F032655BB7B00B04984 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E43F022655BB7B00B04984 /* Extensions.swift */; };
+		F3E43F0B2655C4EC00B04984 /* RepoInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E43F0A2655C4EC00B04984 /* RepoInfoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F3E43EFA2655BAB200B04984 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F3E43EFE2655BAF500B04984 /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		F3E43F022655BB7B00B04984 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F3E43F0A2655C4EC00B04984 /* RepoInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			children = (
 				F396463A26555BC600CDF777 /* ReposTableVC.swift */,
 				F396463D26555C3900CDF777 /* MainNavController.swift */,
+				F3E43F0A2655C4EC00B04984 /* RepoInfoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				F396463E26555C3900CDF777 /* MainNavController.swift in Sources */,
 				F39646262655571100CDF777 /* ViewController.swift in Sources */,
+				F3E43F0B2655C4EC00B04984 /* RepoInfoVC.swift in Sources */,
 				F39646462655605000CDF777 /* RepositoryModel.swift in Sources */,
 				F39646222655571100CDF777 /* AppDelegate.swift in Sources */,
 				F39646242655571100CDF777 /* SceneDelegate.swift in Sources */,

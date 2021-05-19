@@ -20,10 +20,10 @@ class NetworkService {
     func fetchGitHubRepos(for organization: String) {
         let urlString = "\(gitHubURL)/orgs/\(organization)/repos"
         print(urlString)
-//        performRequest(with: urlString)
-        if let decodedData = self.parseJSON(testData!) {
-            self.delegate?.didUpdateData(data: decodedData)
-        }
+        performRequest(with: urlString)
+//        if let decodedData = self.parseJSON(testData!) {
+//            self.delegate?.didUpdateData(data: decodedData)
+//        }
     }
 
     private func performRequest(with urlString: String) {
@@ -62,7 +62,7 @@ class NetworkService {
     private let testData = """
     [
       {
-        "full_name": "1",
+        "full_name": "Taky/Dlhsia Testovacia Nazov/Tutok/Nech Vidim",
         "owner": {
           "avatar_url": "https://avatars.githubusercontent.com/u/46962873?v=4",
         },

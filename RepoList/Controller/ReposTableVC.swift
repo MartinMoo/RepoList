@@ -36,6 +36,12 @@ class ReposTableVC: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .secondarySystemBackground
     }
+    
+    private func callRepoInfo(for url: String) {
+        let repoInfoVC = RepoInfoVC()
+        repoInfoVC.repoURL = url
+        navigationController?.pushViewController(repoInfoVC, animated: true)
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,6 +56,11 @@ class ReposTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! ReposTableCellView
         cell.repositoryInfo = repositories[indexPath.row]
         return cell
+    }
+    
+    // MARK: - Table viewrow selection
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        callRepoInfo(for: repositories[indexPath.row].htmlUrl)
     }
 }
 

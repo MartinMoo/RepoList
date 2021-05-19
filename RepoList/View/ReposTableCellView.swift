@@ -57,7 +57,7 @@ class ReposTableCellView: UITableViewCell {
         let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 24, weight: .black)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,6 +69,14 @@ class ReposTableCellView: UITableViewCell {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let starIcon: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "star")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
     let stargazersLabel: UILabel = {
@@ -107,6 +115,7 @@ class ReposTableCellView: UITableViewCell {
         headerView.addSubview(nameLabel)
         contentContainer.addSubview(descriptionLabel)
         contentContainer.addSubview(footerView)
+        footerView.addSubview(starIcon)
         footerView.addSubview(stargazersLabel)
         footerView.addSubview(updatedLabel)
         
@@ -139,16 +148,21 @@ class ReposTableCellView: UITableViewCell {
         
         descriptionLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 15).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor, constant: 15).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor, constant: 15).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor, constant: -15).isActive = true
         
         footerView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15).isActive = true
         footerView.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor).isActive = true
         footerView.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor).isActive = true
         footerView.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor).isActive = true
         
+        starIcon.centerYAnchor.constraint(equalTo: stargazersLabel.centerYAnchor,constant: -1).isActive = true
+        starIcon.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        starIcon.widthAnchor.constraint(equalTo: starIcon.heightAnchor).isActive = true
+        starIcon.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 15).isActive = true
+        
+        stargazersLabel.leadingAnchor.constraint(equalTo: starIcon.trailingAnchor, constant: 3).isActive = true
         stargazersLabel.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 5).isActive = true
         stargazersLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -15).isActive = true
-        stargazersLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 15).isActive = true
         
         updatedLabel.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 5).isActive = true
         updatedLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -15).isActive = true
