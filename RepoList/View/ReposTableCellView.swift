@@ -5,6 +5,7 @@
 //  Created by Moo Maa on 19/05/2021.
 //
 
+import Foundation
 import UIKit
 
 class ReposTableCellView: UITableViewCell {
@@ -16,7 +17,6 @@ class ReposTableCellView: UITableViewCell {
             nameLabel.text = data.fullName
             descriptionLabel.text = data.description
             stargazersLabel.text = String(data.stargazersCount)
-            print(data.updatedAt)
             if let updatedAt = data.updatedAt {
                 let formatedDate = formatDate(for: updatedAt)
                 updatedLabel.text = "\(Localize.List.LastUpdated) :\(String(describing: formatedDate))"
@@ -26,6 +26,7 @@ class ReposTableCellView: UITableViewCell {
 
         }
     }
+
     let imageSize: CGFloat = 50
     
     let contentContainer: UIView = {
@@ -48,7 +49,6 @@ class ReposTableCellView: UITableViewCell {
     
     let avatarImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -73,7 +73,7 @@ class ReposTableCellView: UITableViewCell {
     
     let starIcon: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "star")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        image.image = UIImage(systemName: "star")?.withTintColor(.secondaryLabel, renderingMode: .alwaysOriginal)
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -179,4 +179,5 @@ class ReposTableCellView: UITableViewCell {
         let formatedDateString = dateFormatter.string(from: formatedDate)
         return formatedDateString
     }
+    
 }

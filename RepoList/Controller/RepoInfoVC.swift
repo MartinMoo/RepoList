@@ -9,14 +9,19 @@ import UIKit
 import WebKit
 
 class RepoInfoVC: UIViewController {
+    //MARK: - Properties
     var repoURL: String?
+    
+    //MARK: - Private properties
     private var webView = WKWebView()
 
+    //MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebView()
     }
     
+    //MARK: - Private methods
     private func setupWebView() {
         webView.navigationDelegate = self
         view = webView
@@ -27,6 +32,5 @@ class RepoInfoVC: UIViewController {
     }
 }
 
-extension RepoInfoVC: WKNavigationDelegate {
-    
-}
+//MARK: - WebKit delegate
+extension RepoInfoVC: WKNavigationDelegate {}

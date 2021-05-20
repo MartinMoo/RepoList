@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ReposTableVC: UITableViewController {
     //MARK: - Private properties
@@ -27,7 +28,7 @@ class ReposTableVC: UITableViewController {
         super.viewDidLoad()
         setupTable()
         networkService.delegate = self
-        networkService.fetchGitHubRepos(for: "sygic")
+        networkService.fetchGitHubRepos(for: "apple")
     }
     
     //MARK: - Private methods
@@ -55,10 +56,16 @@ class ReposTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! ReposTableCellView
         cell.repositoryInfo = repositories[indexPath.row]
+        let imageURL = repositories[indexPath.row].owner.avatarUrl
+        cell.avatarImage.sd_setImage(with: URL(string: imageURL),
+                                    placeholderImage: UIImage(),
+                                    options: SDWebImageOptions.highPriority,
+                                    context: nil,
+                                    progress: nil )
         return cell
     }
     
-    // MARK: - Table viewrow selection
+    // MARK: - Table view row selection
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         callRepoInfo(for: repositories[indexPath.row].htmlUrl)
     }
