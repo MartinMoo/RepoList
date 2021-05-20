@@ -35,20 +35,9 @@ class ReposTableCellView: UITableViewCell {
         return view
     }()
     
-    let headerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let footerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let avatarImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -107,67 +96,80 @@ class ReposTableCellView: UITableViewCell {
  
     //MARK: - Implementation
     private func setupCellView() {
+        
+        // Add Layout Guides
+        let contentLayoutContainer = UILayoutGuide()
+        let headerLayoutContainer = UILayoutGuide()
+        let footerLayoutContainer = UILayoutGuide()
+        
+        contentView.addLayoutGuide(contentLayoutContainer)
+        contentView.addLayoutGuide(headerLayoutContainer)
+        contentView.addLayoutGuide(footerLayoutContainer)
 
         // Add subviews
-        addSubview(contentContainer)
-        contentContainer.addSubview(headerView)
-        headerView.addSubview(avatarImage)
-        headerView.addSubview(nameLabel)
+        contentView.addSubview(contentContainer)
+        contentContainer.addSubview(avatarImage)
+        contentContainer.addSubview(nameLabel)
         contentContainer.addSubview(descriptionLabel)
-        contentContainer.addSubview(footerView)
-        footerView.addSubview(starIcon)
-        footerView.addSubview(stargazersLabel)
-        footerView.addSubview(updatedLabel)
+        contentContainer.addSubview(starIcon)
+        contentContainer.addSubview(stargazersLabel)
+        contentContainer.addSubview(updatedLabel)
         
-        contentView.backgroundColor = .secondarySystemBackground
-        contentContainer.backgroundColor = .systemBackground
+        contentView.backgroundColor = .systemBackground
+        contentContainer.backgroundColor = .secondarySystemBackground
         contentContainer.layer.cornerRadius = 10
         avatarImage.layer.cornerRadius = imageSize / 2
 
-
         // Set constraints
-        contentContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        contentContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
-        contentContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
-        contentContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
-        
-        headerView.topAnchor.constraint(equalTo: contentContainer.topAnchor).isActive = true
-        headerView.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor).isActive = true
-        headerView.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor).isActive = true
-        
-        avatarImage.heightAnchor.constraint(equalToConstant: imageSize).isActive = true
-        avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor).isActive = true
-        avatarImage.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15).isActive = true
-        avatarImage.bottomAnchor.constraint(lessThanOrEqualTo: headerView.bottomAnchor, constant: -15).isActive = true
-        avatarImage.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15).isActive = true
-        
-        nameLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -15).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 25).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15).isActive = true
-        
-        descriptionLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 15).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor, constant: 15).isActive = true
-        descriptionLabel.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor, constant: -15).isActive = true
-        
-        footerView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15).isActive = true
-        footerView.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor).isActive = true
-        footerView.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor).isActive = true
-        footerView.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor).isActive = true
-        
-        starIcon.centerYAnchor.constraint(equalTo: stargazersLabel.centerYAnchor,constant: -1).isActive = true
-        starIcon.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        starIcon.widthAnchor.constraint(equalTo: starIcon.heightAnchor).isActive = true
-        starIcon.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 15).isActive = true
-        
-        stargazersLabel.leadingAnchor.constraint(equalTo: starIcon.trailingAnchor, constant: 3).isActive = true
-        stargazersLabel.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 5).isActive = true
-        stargazersLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -15).isActive = true
-        
-        updatedLabel.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 5).isActive = true
-        updatedLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -15).isActive = true
-        updatedLabel.leadingAnchor.constraint(greaterThanOrEqualTo: stargazersLabel.trailingAnchor, constant: 5).isActive = true
-        updatedLabel.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -15).isActive = true
+        NSLayoutConstraint.activate([
+            contentContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            contentContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            contentContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            contentContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            
+            contentLayoutContainer.topAnchor.constraint(equalTo: contentContainer.topAnchor, constant: 15),
+            contentLayoutContainer.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor, constant: 15),
+            contentLayoutContainer.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor, constant: -15),
+            contentLayoutContainer.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor, constant: -15),
+            
+            headerLayoutContainer.topAnchor.constraint(equalTo: contentLayoutContainer.topAnchor),
+            headerLayoutContainer.leadingAnchor.constraint(equalTo: contentLayoutContainer.leadingAnchor),
+            headerLayoutContainer.trailingAnchor.constraint(equalTo: contentLayoutContainer.trailingAnchor),
+            
+            avatarImage.heightAnchor.constraint(equalToConstant: imageSize),
+            avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor),
+            avatarImage.topAnchor.constraint(equalTo: headerLayoutContainer.topAnchor),
+            avatarImage.bottomAnchor.constraint(lessThanOrEqualTo: headerLayoutContainer.bottomAnchor, constant: -15),
+            avatarImage.leadingAnchor.constraint(equalTo: headerLayoutContainer.leadingAnchor),
+            
+            nameLabel.topAnchor.constraint(equalTo: headerLayoutContainer.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: headerLayoutContainer.bottomAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 25),
+            nameLabel.trailingAnchor.constraint(equalTo: headerLayoutContainer.trailingAnchor),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: headerLayoutContainer.bottomAnchor, constant: 15),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentLayoutContainer.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentLayoutContainer.trailingAnchor),
+            
+            footerLayoutContainer.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
+            footerLayoutContainer.leadingAnchor.constraint(equalTo: contentLayoutContainer.leadingAnchor),
+            footerLayoutContainer.trailingAnchor.constraint(equalTo: contentLayoutContainer.trailingAnchor),
+            footerLayoutContainer.bottomAnchor.constraint(equalTo: contentLayoutContainer.bottomAnchor),
+            
+            starIcon.centerYAnchor.constraint(equalTo: stargazersLabel.centerYAnchor,constant: -1),
+            starIcon.heightAnchor.constraint(equalToConstant: 15),
+            starIcon.widthAnchor.constraint(equalTo: starIcon.heightAnchor),
+            starIcon.leadingAnchor.constraint(equalTo: footerLayoutContainer.leadingAnchor),
+            
+            stargazersLabel.leadingAnchor.constraint(equalTo: starIcon.trailingAnchor, constant: 3),
+            stargazersLabel.topAnchor.constraint(equalTo: footerLayoutContainer.topAnchor, constant: 5),
+            stargazersLabel.bottomAnchor.constraint(equalTo: footerLayoutContainer.bottomAnchor),
+            
+            updatedLabel.topAnchor.constraint(equalTo: footerLayoutContainer.topAnchor, constant: 5),
+            updatedLabel.bottomAnchor.constraint(equalTo: footerLayoutContainer.bottomAnchor),
+            updatedLabel.leadingAnchor.constraint(greaterThanOrEqualTo: stargazersLabel.trailingAnchor, constant: 5),
+            updatedLabel.trailingAnchor.constraint(equalTo: footerLayoutContainer.trailingAnchor)
+        ])
     }
     
     private func formatDate(for date: String) -> String {

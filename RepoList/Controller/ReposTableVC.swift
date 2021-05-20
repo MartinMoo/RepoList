@@ -11,6 +11,7 @@ import SDWebImage
 class ReposTableVC: UITableViewController {
     //MARK: - Private properties
     private let networkService = NetworkService()
+    private var fetchingData = false
     private var repositories: [Repository] = []
     private var reposData: [Repository]? {
         didSet {
@@ -35,7 +36,7 @@ class ReposTableVC: UITableViewController {
     private func setupTable() {
         tableView.register(ReposTableCellView.self, forCellReuseIdentifier: "RepoCell")
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .secondarySystemBackground
+        tableView.backgroundColor = .systemBackground
     }
     
     private func callRepoInfo(for url: String) {
@@ -54,14 +55,18 @@ class ReposTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! ReposTableCellView
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as? ReposTableCellView else { return UITableViewCell() }
         cell.repositoryInfo = repositories[indexPath.row]
         let imageURL = repositories[indexPath.row].owner.avatarUrl
+        if fetchingData {
         cell.avatarImage.sd_setImage(with: URL(string: imageURL),
                                     placeholderImage: UIImage(),
                                     options: SDWebImageOptions.highPriority,
                                     context: nil,
                                     progress: nil )
+        } else {
+            cell.avatarImage.image = UIImage(systemName: imageURL)
+        }
         return cell
     }
     
@@ -74,10 +79,11 @@ class ReposTableVC: UITableViewController {
 //MARK: - NetworkService delegate
 extension ReposTableVC: NetworkServiceDelegate {
     func didUpdateData(data: [Repository]?) {
+        fetchingData = true
         reposData = data
     }
     
     func didFailWithError(error: Error) {
-        print("Error: ", error.localizedDescription)
+        reposData = [Repository(title: "Ooops", text: error.localizedDescription, image: "exclamationmark.triangle.fill")]
     }
 }

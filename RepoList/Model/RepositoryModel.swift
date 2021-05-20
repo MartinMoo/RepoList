@@ -16,6 +16,13 @@ struct Repository: Decodable {
     let htmlUrl: String
 }
 
+extension Repository {
+    init(title: String, text: String, image: String) {
+        let owner = Owner(avatarUrl: image)
+        self.init(fullName: title, description: text, updatedAt: nil, stargazersCount: 0, owner: owner, htmlUrl: "")
+    }
+}
+
 struct Owner: Decodable {
     let avatarUrl: String
 }
